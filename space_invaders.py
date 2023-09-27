@@ -33,14 +33,15 @@ w, h = game_over_text.get_size()
 player_img = pg.image.load('src/player.png')
 player_width, player_height = player_img.get_size()
 player_gap = 10
-player_velocity = 1
+player_velocity = 10
+player_dx = 0
 player_x = screen_width/2 - player_width/2
 player_y = screen_height  - player_height - player_gap
 
 running = True
 while running:
     # изменение модели
-    player_x += player_velocity
+    player_x += player_dx
 
     # redraw
     display.blit(bg_img, (0, 0))
@@ -57,6 +58,14 @@ while running:
             # нажали на q - quit
             if event.key == pg.K_q:
                 running = False
+        # движение игрока
+        if event.type == pg.KEYDOWN:
+            if event.key == pg.K_a or event.key == pg.K_LEFT:
+                player_dx = -player_velocity
+            if event.key == pg.K_d or event.key == pg.K_RIGHT:
+                player_dx = player_velocity
+        if event.type == pg.KEYUP:
+            player_dx = 0
 
 
     clock.tick(FPS)
