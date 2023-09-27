@@ -38,20 +38,27 @@ player_dx = 0
 player_x = screen_width/2 - player_width/2
 player_y = screen_height  - player_height - player_gap
 
-running = True
-while running:
-    # изменение модели
+def model_update():
+    palayer_model()
+
+def palayer_model():
+    x = 7   # создание переменной и ее инициализация
+    x = 7   # изменение значения уже созданной переменнной
+    global player_x
     player_x += player_dx
     if player_x < 0:
         player_x = 0
     elif player_x > screen_width - player_width:
         player_x = screen_width - player_width
-    # redraw
+
+def display_redraw():
     display.blit(bg_img, (0, 0))
     display.blit(player_img, (player_x, player_y))
     pg.display.update()
 
-    # обработка событий
+def event_processing():
+    global player_dx
+    running = True
     for event in pg.event.get():
         # нажали крестик на окне
         if event.type == pg.QUIT:
@@ -70,7 +77,14 @@ while running:
         if event.type == pg.KEYUP:
             player_dx = 0
 
-
     clock.tick(FPS)
+    return running
+
+
+running = True
+while running:
+    model_update()
+    display_redraw()
+    running = event_processing()
 
 pg.quit()
