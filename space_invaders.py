@@ -1,4 +1,5 @@
 import pygame as pg
+import random
 
 
 pg.init()
@@ -55,9 +56,12 @@ enemy_x = 0
 enemy_y = 0
 
 def enemy_create():
+    """ Создаем противника в случайном месте вверху окна."""
     global enemy_y, enemy_x
-    enemy_x = screen_width / 2 - enemy_width / 2
+    enemy_x = random.randint(0, screen_width - enemy_width)   # screen_width / 2 - enemy_width / 2
     enemy_y = 0
+    print(f'CREATE: {enemy_x=}')
+
 
 
 def model_update():
@@ -150,7 +154,7 @@ def event_processing():
     clock.tick(FPS)
     return running
 
-
+# random.seed(77)
 enemy_create()
 running = True
 while running:
