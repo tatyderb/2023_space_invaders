@@ -38,8 +38,17 @@ player_dx = 0
 player_x = screen_width/2 - player_width/2
 player_y = screen_height  - player_height - player_gap
 
+# пуля
+bullet_img = pg.image.load('src/bullet.png')
+bullet_width, bullet_height = bullet_img.get_size()
+bullet_dy = -5
+bullet_x = player_x     # микро дз - пускать из середины
+bullet_y = player_y - bullet_height
+bullet_alive = False    # есть пуля?
+
 def model_update():
     palayer_model()
+    bullet_model()
 
 def palayer_model():
     x = 7   # создание переменной и ее инициализация
@@ -51,9 +60,25 @@ def palayer_model():
     elif player_x > screen_width - player_width:
         player_x = screen_width - player_width
 
+def bullet_model():
+    global bullet_y, bullet_alive
+    bullet_y += bullet_dy
+    # пуля улетела за верх экрана
+    if bullet_y < 0:
+        bullet_alive = False
+
+def bullet_create():
+    global bullet_y, bullet_x, bullet_alive
+    bullet_alive = True
+    bullet_x = player_x  # микро дз - пускать из середины
+    bullet_y = player_y - bullet_height
+
+
 def display_redraw():
     display.blit(bg_img, (0, 0))
     display.blit(player_img, (player_x, player_y))
+    if bullet_alive:
+        display.blit(bullet_img, (bullet_x, bullet_y))
     pg.display.update()
 
 def event_processing():
@@ -76,6 +101,8 @@ def event_processing():
                 player_dx = player_velocity
         if event.type == pg.KEYUP:
             player_dx = 0
+
+
 
     clock.tick(FPS)
     return running
