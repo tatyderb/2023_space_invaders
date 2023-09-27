@@ -102,6 +102,12 @@ def event_processing():
         if event.type == pg.KEYUP:
             player_dx = 0
 
+        # по левому клику мыши стреляем
+        if event.type == pg.MOUSEBUTTONDOWN:
+            key = pg.mouse.get_pressed()    # key[0] - left, key[2] - right
+            print(f'{key[0]=} {bullet_alive=}')
+            if not bullet_alive:
+                bullet_create()
 
 
     clock.tick(FPS)
