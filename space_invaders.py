@@ -42,7 +42,10 @@ running = True
 while running:
     # изменение модели
     player_x += player_dx
-
+    if player_x < 0:
+        player_x = 0
+    elif player_x > screen_width - player_width:
+        player_x = screen_width - player_width
     # redraw
     display.blit(bg_img, (0, 0))
     display.blit(player_img, (player_x, player_y))
