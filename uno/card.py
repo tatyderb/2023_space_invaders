@@ -40,4 +40,8 @@ class Card:
         """ Все карты для создания колоды. """
         return [Card(color, number) for number in Card.NUMBERS for color in Card.COLORS]
 
+    def accept(self, topcard):
+        """ Возвращает True, если эту карту можно играть на topcard"""
+        return self.color == topcard.color or self.number == topcard.number
+
 
