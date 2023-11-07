@@ -25,6 +25,7 @@ class Application:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                self.vgame.dispatcher(event)
 
             clock.tick(FPS)     # ждать 1/FPS секунды
 

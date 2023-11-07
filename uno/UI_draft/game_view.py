@@ -1,4 +1,5 @@
 import pygame
+from pygame.event import Event
 
 from UI_draft.card_view import CardView
 from UI_draft.config import RSC
@@ -32,3 +33,15 @@ class GameView:
         self.cv1.draw(display)
 
         pygame.display.update()
+
+    def dispatcher(self, event: Event):
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            self.cv1.flip()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            key = pygame.mouse.get_pressed()  # key[0] - left, key[2] - right
+            x, y = pygame.mouse.get_pos()
+            if self.cv1.inside(x, y):
+                self.cv1.flip()
+
+
+
