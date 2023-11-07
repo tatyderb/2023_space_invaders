@@ -8,8 +8,11 @@ from player import Player
 
 class Game:
     HAND_SIZE = 7
+    DEFAULT_PLAYER_NAMES = ['Bob', 'Mike']
 
-    def __init__(self, player_names: list[str]):
+    def __init__(self, player_names: list[str] | None = None):
+        if player_names is None:
+            player_names = Game.DEFAULT_PLAYER_NAMES
         self.deck = Deck()
         self.players = [Player(name, self.deck.draw(Game.HAND_SIZE)) for name in player_names]
         self.player_index = 0
