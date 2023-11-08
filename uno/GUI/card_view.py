@@ -51,5 +51,14 @@ class ViewCard:
         else:
             self.selected = selected
 
+    def move(self, dx: int, dy: int):
+        """ Сдвигает карту на dx, dy """
+        self.x += dx
+        self.y += dy
+
+    def set(self, x_to, y_to):
+        self.x = x_to
+        self.y = y_to
+
 
 
