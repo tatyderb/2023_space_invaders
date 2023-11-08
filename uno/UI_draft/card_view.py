@@ -30,3 +30,14 @@ class CardView:
     def flip(self):
         """ Переворачивает карту. """
         self.face_up = not self.face_up
+
+    def move(self, dx: int , dy: int):
+        """ Сдвигает карту на dx, dy"""
+        self.x += dx
+        self.y += dy
+
+    def set_pos(self, x_to, y_to):
+        self.x = x_to
+        self.y = y_to
+
+

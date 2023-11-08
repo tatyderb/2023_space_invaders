@@ -25,6 +25,9 @@ class GameView:
 
         # тест одной карты, переворачиваем рубашку по клику мыши
         self.cv1 = CardView(Card('red', 4), 20, 10)
+        self.cv2 = CardView(Card('blue', 9), 200, 200)
+
+        self.fly_card = None
 
     def redraw(self, display: pygame.Surface):
         # фон
@@ -35,6 +38,8 @@ class GameView:
         pygame.display.update()
 
     def dispatcher(self, event: Event):
+        if self.fly_card:
+            self.fly_card.fly()
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
             self.cv1.flip()
         if event.type == pygame.MOUSEBUTTONDOWN:
