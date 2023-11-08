@@ -2,6 +2,7 @@ RSC = {
     'title': 'UNO',
     'FPS': 30,
     'img': {
+        'bg_color': (0, 81, 44),
         'background': 'resources/img/background.png',
         'back': 'resources/img/back.png',
         'card': 'resources/img/{}.png'
