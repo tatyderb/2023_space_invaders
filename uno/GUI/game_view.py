@@ -29,3 +29,7 @@ class ViewGame:
             if key[0] and self.cv.inside(pos):
                 self.cv.flip()
 
+        # по клавише a - select/unselect
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
+            self.cv.select()
+
