@@ -2,6 +2,7 @@ import pygame
 
 from GUI.config import RSC, GEOM
 from GUI.game_view import ViewGame
+from GUI.userevent import ANIMATION
 
 
 class Application:
@@ -12,6 +13,8 @@ class Application:
 
         self.FPS = RSC['FPS']
         self.clock = pygame.time.Clock()
+        pygame.time.set_timer(ANIMATION, int(1000 / self.FPS))
+
         self.display = pygame.display.set_mode(self.size)
         pygame.display.set_caption(RSC['title'])
 

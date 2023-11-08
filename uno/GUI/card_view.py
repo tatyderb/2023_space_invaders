@@ -10,7 +10,6 @@ class ViewCard:
     SELECTED_GAP_Y = 6
     SELECTED_COLOR = 'magenta'
 
-
     def __init__(self, card: Card, x: int, y: int, face_up: bool = True):
         self.card = card
         filename = RSC['img']['card'].format(repr(card))
