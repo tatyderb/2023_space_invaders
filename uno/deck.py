@@ -3,7 +3,17 @@ import random
 from card import Card
 
 
-class Deck:
+class CardList:
+    """ Список карт"""
+    def __init__(self, cards=None):
+        self.cards = [] if cards is None else cards
+
+    def __repr__(self):
+        """ r4 y9 b1 b0 """
+        return ' '.join([str(c) for c in self.cards])
+
+
+class Deck(CardList):
     """ Колода карт"""
 
     def __init__(self, cards: list[Card] | None = None):
@@ -13,11 +23,7 @@ class Deck:
             random.shuffle(self.cards)
             # print(self.cards)
         else:
-            self.cards = cards
-
-    def __repr__(self):
-        """ r4 y9 b1 b0 """
-        return ' '.join([str(c) for c in self.cards])
+            super().__init__(cards)
 
     def draw(self, n: int = 1):
         """ Взяли из колоды 1 карту и вернули ее."""
@@ -33,11 +39,13 @@ class Deck:
         return Deck(Card.card_list(text))
 
 
-class Heap:
-    def __init__(self, cards=None):
-        self.cards = [] if cards is None else cards
+class Heap(CardList):
 
-    def __repr__(self):
+    def __str__(self):
+        return repr(self.top()) if self.cards else 'Empty heap'
+
+    def short_repr(self):
+        """ __repr__ печатает все карты отбоя, тут только верхняя. """
         return repr(self.top()) if self.cards else 'Empty heap'
 
     def top(self) -> Card:

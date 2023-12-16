@@ -10,7 +10,7 @@ from card import Card
 class ViewGame:
     BACKGROUND_COLOR = RSC['img']['bg_color']
     TICK_MS = int(1000 / RSC['FPS'])   # милисекунд между тиками анимации
-    TICK_ANIMATION_DURATION = int(1000 / TICK_MS) # за сколько тиков отработает онимация
+    TICK_ANIMATION_DURATION = int(1000 / TICK_MS) # за сколько тиков отработает анимация
     def __init__(self, size):
         # Одна карта, клик мыши левой кнопкой - переворот карты, a - select/unselect
         pygame.time.set_timer(ANIMATION, self.TICK_MS)
@@ -53,4 +53,7 @@ class ViewGame:
         # по клавише a - select/unselect
         if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
             self.cv1.select()
+
+    def model_update(self):
+        pass
 

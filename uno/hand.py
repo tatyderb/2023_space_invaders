@@ -1,14 +1,9 @@
 from card import Card
+from deck import CardList
 
 
-class Hand:
+class Hand(CardList):
     """ Рука игрока"""
-    def __init__(self, cardlist: list[Card] | None = None):
-        self.cards = [] if cardlist is None else cardlist
-
-    def __repr__(self):
-        """ r4 y9 b1 b0 """
-        return ' '.join([str(c) for c in self.cards])
 
     def __len__(self):
         """ Возвращает размер руки."""

@@ -22,6 +22,7 @@ class Application:
     def run(self):
         running = True
         while running:
+            self.vgame.model_update()
             self.vgame.draw(self.display)
             for event in pygame.event.get():
                 # нажали крестик на окне
