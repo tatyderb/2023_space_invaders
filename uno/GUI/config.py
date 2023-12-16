@@ -3,8 +3,7 @@ RSC = {
     'FPS': 30,
     'status_bar': {
         'font': None,
-        'fontsize': 24,
-        'ygap': 5
+        'fontsize': 24
     },
 
     'img': {
@@ -26,5 +25,5 @@ GEOM = {
     'dx_card': 10,
     'dx_card_compact': 30,
     'xgap': 10,
-    'ygap': 10,
+    'ygap': 5,
 }

@@ -1,11 +1,11 @@
 """ Status bar для вывода что надо делать игроку / что делает противник."""
 import pygame
 
-from GUI.config import RSC
+from GUI.config import RSC, GEOM
 
 
 class StatusBar:
-    GAP = RSC['status_bar']['ygap']
+    GAP = GEOM['ygap']
     def __init__(self, rect: pygame.Rect):
         self.rect = rect
 

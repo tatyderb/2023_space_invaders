@@ -3,6 +3,7 @@ import pygame
 from GUI.config import RSC, GEOM
 from GUI.game_view import ViewGame
 from GUI.userevent import ANIMATION
+from game import Game
 
 
 class Application:
@@ -21,7 +22,7 @@ class Application:
         #     self.vgame = ViewGame.create(filename)
         # else:
         #     self.vgame = ViewGame(self.size)
-        self.vgame = ViewGame(self.size)
+        self.vgame = ViewGame(self.size, Game(['Bob', 'Mike']))
 
     def run(self):
         running = True
@@ -36,6 +37,10 @@ class Application:
 
         pygame.quit()
 
+
+# пока никаких случайностей
+import random
+random.seed(7)
 
 app = Application('../test/save1.json')
 app.run()

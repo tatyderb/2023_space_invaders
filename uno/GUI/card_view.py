@@ -10,20 +10,34 @@ class ViewCard:
     SELECTED_GAP_Y = 6
     SELECTED_COLOR = 'magenta'
 
-    def __init__(self, card: Card, x: int, y: int, face_up: bool = True):
+    def __init__(self, card: Card | None, x: int, y: int, face_up: bool = True):
+        """ card = None - пустое место под карту. """
         self.card = card
-        filename = RSC['img']['card'].format(repr(card))
-        # print(filename)
-        img = pygame.image.load(filename)
-        self.img = pygame.transform.scale(img, GEOM['card'])
         self.x = x
         self.y = y
         self.width, self.height = GEOM['card']
         self.face_up = face_up
         self.selected = False
 
+    @property
+    def card(self):
+        return self.__card
+
+    @card.setter
+    def card(self, value: Card):
+        self.__card = value
+        if value is not None:
+            filename = RSC['img']['card'].format(repr(value))
+            # print(filename)
+            img = pygame.image.load(filename)
+            self.img = pygame.transform.scale(img, GEOM['card'])
+        else:
+            self.img = None
+
     def draw(self, display: pygame.Surface):
         # отрисовка рамки, если selected
+        if self.card is None:
+            return
         if self.selected:
             x = self.x - self.SELECTED_GAP_X
             y = self.y - self.SELECTED_GAP_Y

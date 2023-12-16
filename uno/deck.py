@@ -12,6 +12,9 @@ class CardList:
         """ r4 y9 b1 b0 """
         return ' '.join([str(c) for c in self.cards])
 
+    def __len__(self):
+        return len(self.cards)
+
 
 class Deck(CardList):
     """ Колода карт"""
