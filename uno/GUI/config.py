@@ -1,7 +1,12 @@
 RSC = {
     'title': 'UNO',
     'FPS': 30,
-    ''
+    'status_bar': {
+        'font': None,
+        'fontsize': 24,
+        'ygap': 5
+    },
+
     'img': {
         'bg_color': (0, 81, 44),
         'background': 'resources/img/background.png',

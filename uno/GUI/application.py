@@ -7,7 +7,7 @@ from GUI.userevent import ANIMATION
 
 class Application:
 
-    def __init__(self):
+    def __init__(self, filename: str | None = None):
         pygame.init()
         self.size = (self.width, self.height) = GEOM['display']
 
@@ -17,6 +17,10 @@ class Application:
         self.display = pygame.display.set_mode(self.size)
         pygame.display.set_caption(RSC['title'])
 
+        # if filename:
+        #     self.vgame = ViewGame.create(filename)
+        # else:
+        #     self.vgame = ViewGame(self.size)
         self.vgame = ViewGame(self.size)
 
     def run(self):
@@ -33,5 +37,5 @@ class Application:
         pygame.quit()
 
 
-app = Application()
+app = Application('../test/save1.json')
 app.run()
