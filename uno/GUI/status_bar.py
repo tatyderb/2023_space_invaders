@@ -26,6 +26,7 @@ class StatusBar:
 
     @text.setter
     def text(self, value: str):
+        print('Status bar: '+ value)
         self.__text = value
         self.img = self.font.render(value, True, self.color)
         w = self.img.get_width()

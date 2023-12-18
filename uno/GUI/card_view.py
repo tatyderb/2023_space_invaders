@@ -19,6 +19,9 @@ class ViewCard:
         self.face_up = face_up
         self.selected = False
 
+    def __repr__(self):
+        return f'{self.card}: (x={self.x}, y={self.y}, w={self.width}, h={self.height}, xrb={self.x + self.width}, yrb={self.y - self.height})'
+
     @property
     def card(self):
         return self.__card

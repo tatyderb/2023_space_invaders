@@ -15,6 +15,7 @@ class FlyCard:
         self.dy = int((y_to - self.cv.y) / ticks)
 
     def fly(self):
+        # print(f'fly: {self.cv}')
         self.cv.move(self.dx, self.dy)
         self.ticks -= 1
         if self.ticks <= 0:

@@ -4,9 +4,10 @@ from hand import Hand
 
 
 class Player:
-    def __init__(self, name: str, hand: Hand | None = None):
+    def __init__(self, name: str, hand: Hand | None = None, interactive_player: bool = False):
         self.name = name
         self.hand = Hand([] if hand is None else hand)
+        self.interactive = interactive_player
 
     def __repr__(self):
         return f'{self.name}: {self.hand}'
@@ -32,4 +33,12 @@ class Player:
     def get_available_cards(self, top: Card):
         """ Возвращает список карт, которые можно положить на top"""
         return [card for card in self.hand if top.accept(card)]
+
+    def choose_card(self, top: Card):
+        """ Метод бота, играет первую подходящую карту"""
+        # TODO: PlayerBot class
+        card = self.get_available_cards(top)[0]
+        self.hand.remove_card(card)
+        return card
+
 

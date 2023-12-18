@@ -38,6 +38,16 @@ class VPlayer(ABC):
         for vc in self.hand:
             vc.draw(display)
 
+    def get_vcard(self, pos):
+        for i, cv in enumerate(self.hand):
+            if cv.inside(pos):
+                return cv, i
+        return None, None
+
+    @property
+    def empty(self):
+        return self.hand[-1]
+
     @staticmethod
     def place_cards(card_list: CardList, bounds: pygame.Rect):
         """ Распологает карты в рамках bounds, центрируя, расстояние между картами card_dx,
@@ -61,7 +71,8 @@ class VPlayer(ABC):
 
 
 class VInteractivePlayer(VPlayer):
-    pass
+    def __init__(self, player: Player, bounds: pygame.Rect):
+        super().__init__(player, bounds, face_up=True)
 
 
 class VBotPlayer(VPlayer):

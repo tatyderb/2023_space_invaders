@@ -2,7 +2,7 @@ import pygame
 
 from GUI.config import RSC, GEOM
 from GUI.game_view import ViewGame
-from GUI.userevent import ANIMATION
+from GUI.userevent import NEXT_PHASE
 from game import Game
 
 
@@ -26,8 +26,9 @@ class Application:
 
     def run(self):
         running = True
+        pygame.event.post(pygame.event.Event(NEXT_PHASE))
+
         while running:
-            self.vgame.model_update()
             self.vgame.draw(self.display)
             for event in pygame.event.get():
                 # нажали крестик на окне
@@ -42,5 +43,5 @@ class Application:
 import random
 random.seed(7)
 
-app = Application('../test/save1.json')
+app = Application()
 app.run()
