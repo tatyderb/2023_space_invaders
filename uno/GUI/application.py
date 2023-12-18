@@ -34,7 +34,12 @@ class Application:
                 # нажали крестик на окне
                 if event.type == pygame.QUIT:
                     running = False
-                self.vgame.dispatcher(event)
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_q:
+                    running = False
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_n:
+                    self.vgame = ViewGame(self.size, Game(['Bob', 'Mike']))
+                else:
+                    self.vgame.dispatcher(event)
 
         pygame.quit()
 

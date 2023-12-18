@@ -66,6 +66,11 @@ class ViewGame:
 
     def dispatcher(self, event: pygame.event.Event):
         """ Разбор 1 события. """
+        if event.type == GAME_OVER:
+            self.status_bar.text = f'Победил {self.game.current_player.name}! Нажмите q для выхода или n для новой игры.'
+            self.need_redraw = True
+            return
+
         if event.type == FLY_END:
             # надо пинуть game и сказать, что пора переходить к следующей фазе игры
             print('END OF FLY>>>>>>>>>>>')

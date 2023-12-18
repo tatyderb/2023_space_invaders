@@ -2,7 +2,7 @@ import json
 
 import pygame
 
-from GUI.userevent import NEXT_PHASE
+from GUI.userevent import NEXT_PHASE, GAME_OVER
 from card import Card
 from deck import Deck, Heap
 from hand import Hand
@@ -103,6 +103,11 @@ class Game:
             msg = Game.STATUS.GAME_END
 
         elif self.status == Game.STATUS.ROUND_END:
+            if self.current_player.check_win_condition():
+                self.status = Game.STATUS.GAME_END
+                pygame.event.post(pygame.event.Event(GAME_OVER))
+                return '', None, None, None, None
+
             self.next_player()
             self.status = Game.STATUS.ROUND_BEGIN
             msg = f"Ход переходит игроку {self.current_player.name}"
