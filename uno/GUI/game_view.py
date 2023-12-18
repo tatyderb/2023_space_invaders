@@ -108,13 +108,19 @@ class ViewGame:
 
             # кликнули по нужному пользователю и карте, если ему надо выбирать карту,
             # запустили анимацию полета карты в отбой
+
+            # если кликов не ждут, игнорируем
+            if not self.game.wait_interactive_action:
+                return
+            # если кликнули не туда, игнорируем
             clicked_player_index, vcard, vcard_index = self.get_player_clicked_card(pos)
+            card = None if vcard is None else vcard.card
             if self.game.choose_deck(clicked_player_index):
                 msg, player_index_from, card_from, player_index_to, card_to = self.game.player_draw_card()
                 self.status_bar.text = msg
                 self.try_to_fly(player_index_from, card_from, player_index_to, card_to)
                 self.need_redraw = True
-            elif self.game.choose_card(clicked_player_index, vcard.card):
+            elif self.game.choose_card(clicked_player_index, card):
                 print('game.choose_card')
                 self.fly = FlyCard(vcard, self.vheap.bounds.x, self.vheap.bounds.y, self.TICK_ANIMATION_DURATION)
                 print(f'FLY: {self.fly}')

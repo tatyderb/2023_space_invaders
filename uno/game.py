@@ -144,13 +144,14 @@ class Game:
 
     def choose_deck(self, clicked_player_index: int):
         """ Кликнули по колоде когда игрок интерактивный и фаза DRAW_CARD"""
-        return  clicked_player_index == self.DECK_INDEX and self.current_player.interactive \
-                and self.status == Game.STATUS.DRAW_CARD
+        return self.status == Game.STATUS.DRAW_CARD \
+               and clicked_player_index == self.DECK_INDEX \
+               and self.current_player.interactive
 
     def choose_card(self, clicked_player_index: int, card: Card):
         """ Кликнули по карте интерактивного игрока, когда его фаза игры карт и эту карту можно играть."""
-        if clicked_player_index == self.player_index and self.current_player.interactive \
-                and self.status in (Game.STATUS.PLAY_CARD, Game.STATUS.PLAY_CARD_AGAIN) \
+        if self.status in (Game.STATUS.PLAY_CARD, Game.STATUS.PLAY_CARD_AGAIN) \
+                and clicked_player_index == self.player_index and self.current_player.interactive \
                 and card.accept(self.heap.top()):
             self.current_player.hand.remove_card(card)
             self.heap.put(card)
